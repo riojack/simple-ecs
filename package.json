@@ -1,0 +1,20 @@
+{
+  "name": "simple-elasticbeanstalk",
+  "version": "1.0.0",
+  "description": "Simple NodeJS app deployable to AWS ElasticBeanstalk",
+  "main": "server.js",
+  "private": true,
+  "engines": {
+    "node": ">=16.17.0 <17.0.0",
+    "npm": ">=8.19.2 <9.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:clean": "docker rmi -f $(docker images -a -q)",
+    "predocker:image": "docker tag \"$(basename $(pwd)):latest\" \"$(basename $(pwd)):$(date +%s)\"; docker rmi \"$(basename $(pwd)):latest\"",
+    "docker:image": "docker build -t \"$(basename $(pwd)):latest\" .",
+    "docker:run": "docker run -t -i -p 5001:7521"
+  },
+  "author": "riojack <riojack@users.noreply.github.com>",
+  "license": "ISC"
+}
